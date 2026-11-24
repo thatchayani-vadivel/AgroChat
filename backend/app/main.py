@@ -83,6 +83,7 @@ def create_app() -> FastAPI:
         allow_credentials=(origins != ["*"]),
         allow_methods=["*"],
         allow_headers=["*"],
+        allow_private_network=True,
     )
 
     register_exception_handlers(application)
