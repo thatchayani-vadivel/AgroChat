@@ -29,8 +29,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController(text: 'farmer@agrochat.com');
+  final _passwordController = TextEditingController(text: 'Farmer@123');
 
   late UserRole _selectedRole;
   late final AuthRepository _authRepo;
@@ -295,6 +295,13 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _selectedRole = role;
           _errorMessage = null;
+          if (role == UserRole.farmer) {
+            _emailController.text = 'farmer@agrochat.com';
+            _passwordController.text = 'Farmer@123';
+          } else {
+            _emailController.text = 'officer@agrochat.com';
+            _passwordController.text = 'Officer@123';
+          }
         });
       },
       borderRadius: BorderRadius.circular(10),
