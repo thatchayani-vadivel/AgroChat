@@ -10,6 +10,7 @@ import 'package:agrochat_app/core/network/api_exception.dart';
 import 'package:agrochat_app/core/theme/app_colors.dart';
 import 'package:agrochat_app/features/auth/models/auth_user.dart';
 import 'package:agrochat_app/features/auth/presentation/login_screen.dart';
+import 'package:agrochat_app/features/auth/presentation/register_screen.dart';
 import 'package:agrochat_app/features/auth/repositories/auth_repository.dart';
 import 'package:agrochat_app/features/farmer/presentation/farmer_home_screen.dart';
 import 'package:agrochat_app/features/officer/presentation/officer_home_screen.dart';
@@ -90,6 +91,31 @@ class _SplashScreenState extends State<SplashScreen> {
         _statusTitle = '$appTitle Connected';
         _statusDetail = 'API & MySQL database are online and ready.';
       });
+
+      // Direct page navigation shortcuts via URL query parameter: ?page=register or ?page=login
+      final pageParam = Uri.base.queryParameters['page']?.toLowerCase();
+      if (pageParam == 'register') {
+        if (!mounted) return;
+        final isOfficer = Uri.base.queryParameters['role']?.toLowerCase() == 'officer';
+        _routeToDestination(
+          RegisterScreen(
+            initialRole: isOfficer ? UserRole.agriculturalOfficer : UserRole.farmer,
+            authRepository: _authRepo,
+          ),
+        );
+        return;
+      }
+      if (pageParam == 'login') {
+        if (!mounted) return;
+        final isOfficer = Uri.base.queryParameters['role']?.toLowerCase() == 'officer';
+        _routeToDestination(
+          LoginScreen(
+            initialRole: isOfficer ? UserRole.agriculturalOfficer : UserRole.farmer,
+            authRepository: _authRepo,
+          ),
+        );
+        return;
+      }
 
       // Quick demo role shortcut via URL query parameter: ?role=farmer or ?role=officer
       final roleParam = Uri.base.queryParameters['role']?.toLowerCase();

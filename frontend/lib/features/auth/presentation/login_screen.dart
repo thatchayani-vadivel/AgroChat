@@ -43,6 +43,16 @@ class _LoginScreenState extends State<LoginScreen> {
   void initState() {
     super.initState();
     _selectedRole = widget.initialRole;
+    final roleQuery = Uri.base.queryParameters['role']?.toLowerCase();
+    if (roleQuery == 'officer' || widget.initialRole == UserRole.agriculturalOfficer) {
+      _selectedRole = UserRole.agriculturalOfficer;
+      _emailController.text = 'officer@agrochat.com';
+      _passwordController.text = 'Officer@123';
+    } else {
+      _selectedRole = UserRole.farmer;
+      _emailController.text = 'farmer@agrochat.com';
+      _passwordController.text = 'Farmer@123';
+    }
     _authRepo = widget.authRepository ?? AuthRepository();
   }
 

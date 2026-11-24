@@ -28,11 +28,11 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final _nameController = TextEditingController(text: 'Suresh Patil');
+  final _emailController = TextEditingController(text: 'suresh@agrochat.com');
+  final _phoneController = TextEditingController(text: '+91 9876501234');
+  final _passwordController = TextEditingController(text: 'Farmer@123');
+  final _confirmPasswordController = TextEditingController(text: 'Farmer@123');
 
   late UserRole _selectedRole;
   late final AuthRepository _authRepo;
@@ -60,7 +60,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
-    _selectedRole = widget.initialRole;
+    final roleQuery = Uri.base.queryParameters['role']?.toLowerCase();
+    if (roleQuery == 'officer' || widget.initialRole == UserRole.agriculturalOfficer) {
+      _selectedRole = UserRole.agriculturalOfficer;
+      _nameController.text = 'Dr. Rajesh Deshmukh';
+      _emailController.text = 'rajesh.officer@agrochat.com';
+      _passwordController.text = 'Officer@123';
+      _confirmPasswordController.text = 'Officer@123';
+    } else {
+      _selectedRole = UserRole.farmer;
+    }
     _authRepo = widget.authRepository ?? AuthRepository();
   }
 

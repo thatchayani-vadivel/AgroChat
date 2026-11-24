@@ -24,15 +24,18 @@ All high-resolution screenshot images are saved in `documentation/screenshots/`:
 | :---: | :--- | :--- | :--- |
 | **01** | **System Health & DB Verification** | `documentation/screenshots/01_system_health_verification.png` | Diagnostic startup verification showing `AgroChat API Connected`, `MySQL Status: connected`, and supported user roles. |
 | **02** | **Swagger REST API Documentation** | `documentation/screenshots/01_swagger_api_documentation.png` | Interactive OpenAPI / Swagger UI at `http://127.0.0.1:8000/docs` listing all 40+ endpoints. |
-| **03** | **Role Selection & Authentication** | `documentation/screenshots/02_login_and_role_selection.png` | Login screen with Farmer and Agricultural Officer tabs, prefilled demo credentials, and password masking. |
-| **04** | **Farmer Home Dashboard** | `documentation/screenshots/03_farmer_dashboard.png` | Personalized greetings ("Namaste, Ramesh Kisan"), farm metrics (4.5 Ac, 1 Crop), quick action shortcuts (Add Farm, Add Crop, Ask Officer, Govt Schemes, Shop & Machinery). |
-| **05** | **Farm Land Management** | `documentation/screenshots/04_farmer_farm_management.png` | Registered land parcel cards ("Green Acres Farm", Baramati, Pune, 4.5 Acres, Black Cotton soil, Drip irrigation, Owned), search filter, and "+ Add Farm" button. |
-| **06** | **Crop Lifecycle Tracking** | `documentation/screenshots/05_farmer_crop_management.png` | Active crops ("Wheat HD-2967"), season tags (Rabi, Kharif, Zaid), stage indicator ("Vegetative"), sowing & estimated harvest dates, and "+ Add Crop" button. |
-| **07** | **Farmer Profile & 11 Indic Languages** | `documentation/screenshots/06_farmer_profile_and_language.png` | Personal farmer profile, agricultural location details, and the 11 Indic language selector dropdown. |
-| **08** | **Officer Workstation Dashboard** | `documentation/screenshots/07_officer_dashboard.png` | Officer greetings ("Welcome, Officer Dr. Ananya Sharma!"), Senior Extension Officer designation, Consultation Availability toggle (ON), and pending review counters. |
-| **09** | **Farmer Requests Management Queue** | `documentation/screenshots/08_officer_requests_management.png` | Officer ticket review queue with search bar and status filters (`All`, `Open / Pending`, `My Assigned`, `Pending`, `Accepted`, `In Progress`, `Resolved`). |
-| **10** | **Officer In-App Notifications** | `documentation/screenshots/09_officer_notifications.png` | Real-time notifications center for newly assigned farmer queries and chat responses. |
-| **11** | **Officer Profile & Credentials** | `documentation/screenshots/10_officer_profile.png` | Professional qualifications (Ph.D., M.Sc. Agronomy), 10 years experience, Government department, Baramati jurisdiction, and consultation availability hours. |
+| **03** | **Farmer Login Portal** | `documentation/screenshots/02_farmer_login_page.png` | Farmer login screen with prefilled demo credentials (`farmer@agrochat.com` / `Farmer@123`), password masking, and role selector. |
+| **04** | **Officer Login Portal** | `documentation/screenshots/02_officer_login_page.png` | Agricultural Officer login screen with prefilled credentials (`officer@agrochat.com` / `Officer@123`). |
+| **05** | **Farmer Registration Page** | `documentation/screenshots/02_farmer_registration_page.png` | Farmer sign-up form with name, email, phone, 11 Indic language selector, password, and confirmation. |
+| **06** | **Officer Registration Page** | `documentation/screenshots/02_officer_registration_page.png` | Agricultural Officer registration form with government officer attributes and language selection. |
+| **07** | **Farmer Home Dashboard** | `documentation/screenshots/03_farmer_dashboard.png` | Personalized greetings ("Namaste, Ramesh Kisan"), farm metrics (4.5 Ac, 1 Crop), quick action shortcuts (Add Farm, Add Crop, Ask Officer, Govt Schemes, Shop & Machinery). |
+| **08** | **Farm Land Management** | `documentation/screenshots/04_farmer_farm_management.png` | Registered land parcel cards ("Green Acres Farm", Baramati, Pune, 4.5 Acres, Black Cotton soil, Drip irrigation, Owned), search filter, and "+ Add Farm" button. |
+| **09** | **Crop Lifecycle Tracking** | `documentation/screenshots/05_farmer_crop_management.png` | Active crops ("Wheat HD-2967"), season tags (Rabi, Kharif, Zaid), stage indicator ("Vegetative"), sowing & estimated harvest dates, and "+ Add Crop" button. |
+| **10** | **Farmer Profile & 11 Indic Languages** | `documentation/screenshots/06_farmer_profile_and_language.png` | Personal farmer profile, agricultural location details, and the 11 Indic language selector dropdown. |
+| **11** | **Officer Workstation Dashboard** | `documentation/screenshots/07_officer_dashboard.png` | Officer greetings ("Welcome, Officer Dr. Ananya Sharma!"), Senior Extension Officer designation, Consultation Availability toggle (ON), and pending review counters. |
+| **12** | **Farmer Requests Management Queue** | `documentation/screenshots/08_officer_requests_management.png` | Officer ticket review queue with search bar and status filters (`All`, `Open / Pending`, `My Assigned`, `Pending`, `Accepted`, `In Progress`, `Resolved`). |
+| **13** | **Officer In-App Notifications** | `documentation/screenshots/09_officer_notifications.png` | Real-time notifications center for newly assigned farmer queries and chat responses. |
+| **14** | **Officer Profile & Credentials** | `documentation/screenshots/10_officer_profile.png` | Professional qualifications (Ph.D., M.Sc. Agronomy), 10 years experience, Government department, Baramati jurisdiction, and consultation availability hours. |
 
 ---
 
@@ -42,6 +45,10 @@ For seamless demonstration, each screen can also be directly opened via URL quer
 
 | Target Page | Direct URL |
 | :--- | :--- |
+| **Farmer Login Page** | `http://127.0.0.1:3000/?page=login&role=farmer` |
+| **Officer Login Page** | `http://127.0.0.1:3000/?page=login&role=officer` |
+| **Farmer Registration Page** | `http://127.0.0.1:3000/?page=register&role=farmer` |
+| **Officer Registration Page** | `http://127.0.0.1:3000/?page=register&role=officer` |
 | **Farmer Dashboard** | `http://127.0.0.1:3000/?role=farmer` |
 | **Farm Management** | `http://127.0.0.1:3000/?role=farmer&tab=farms` |
 | **Crop Lifecycle** | `http://127.0.0.1:3000/?role=farmer&tab=crops` |
