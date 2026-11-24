@@ -16,9 +16,30 @@ The single connected entry point for the entire application is:
 
 ---
 
-## 2. Main Module Output Screenshots
+## 2. Android Mobile Emulator Output Screenshots (412 × 915 Portrait)
 
-All high-resolution screenshot images are saved in `documentation/screenshots/`:
+The following screenshots represent the native Android Mobile Emulator output rendered in full smartphone portrait aspect ratio (`412 × 915`):
+
+| No. | Screen Name | File Path | Mobile Features & Layout |
+| :---: | :--- | :--- | :--- |
+| **M01** | **Mobile Farmer Login** | `documentation/emulator_screenshots/01_mobile_farmer_login.png` | Native Android mobile app bar, role toggle pill (`Farmer` / `Agricultural Officer`), prefilled credentials, secure password masking. |
+| **M02** | **Mobile Farmer Registration** | `documentation/emulator_screenshots/02_mobile_farmer_register.png` | Vertical mobile scrolling form with name, email, phone, location fields, 11 Indic language selector, and register button. |
+| **M03** | **Mobile Farmer Dashboard** | `documentation/emulator_screenshots/03_mobile_farmer_dashboard.png` | Mobile cards: Namaste welcome banner, farm acreage & active crop counter cards, quick action tiles, bottom navigation bar (`Home`, `Farms`, `Crops`, `Profile`). |
+| **M04** | **Mobile My Farms Management** | `documentation/emulator_screenshots/04_mobile_farmer_farms.png` | Touch-optimized farm cards ("Green Acres Farm", 4.5 Ac, Black Cotton soil, Drip irrigation, Baramati location), mobile search bar, and "+ Add Farm" button. |
+| **M05** | **Mobile Crop Management** | `documentation/emulator_screenshots/05_mobile_farmer_crops.png` | Crop lifecycle cards ("Wheat HD-2967", Rabi season, Vegetative growth stage, sowing & harvest timeline) with status badges and "+ Add Crop" button. |
+| **M06** | **Mobile Farmer Profile & Languages** | `documentation/emulator_screenshots/06_mobile_farmer_profile.png` | Profile avatar card, contact details, agricultural land size, 11 Indic language dropdown selector, and mobile logout action. |
+| **M07** | **Mobile Officer Login** | `documentation/emulator_screenshots/07_mobile_officer_login.png` | Dedicated Agricultural Officer login screen on mobile viewport with prefilled demo officer credentials. |
+| **M08** | **Mobile Officer Registration** | `documentation/emulator_screenshots/08_mobile_officer_register.png` | Mobile registration portal for agricultural extension officers with employee code, department, jurisdiction, and language selection. |
+| **M09** | **Mobile Officer Dashboard** | `documentation/emulator_screenshots/09_mobile_officer_dashboard.png` | Officer greeting card ("Dr. Ananya Sharma"), Senior Extension Officer badge, consultation availability toggle (ON), pending review metrics, and bottom nav. |
+| **M10** | **Mobile Officer Requests Queue** | `documentation/emulator_screenshots/10_mobile_officer_requests.png` | Touch-friendly filter pills (`All`, `Open / Pending`, `My Assigned`, `Resolved`), query search bar, farmer inquiry cards with priority tags. |
+| **M11** | **Mobile Officer Notifications** | `documentation/emulator_screenshots/11_mobile_officer_notifications.png` | Mobile notifications center with unread message badges, farmer consultation assignment alerts, and timestamped updates. |
+| **M12** | **Mobile Officer Profile** | `documentation/emulator_screenshots/12_mobile_officer_profile.png` | Officer professional credentials, Ph.D./M.Sc. qualifications, government jurisdiction, contact info, and availability hours. |
+
+---
+
+## 3. Desktop Application Output Screenshots (1280 × 900)
+
+All high-resolution desktop view screenshot images are saved in `documentation/screenshots/`:
 
 | No. | Screen Name | File Path | Key Features Shown |
 | :---: | :--- | :--- | :--- |
@@ -39,7 +60,7 @@ All high-resolution screenshot images are saved in `documentation/screenshots/`:
 
 ---
 
-## 3. Direct Navigation URLs for College Demo
+## 4. Direct Navigation URLs for College Demo
 
 For seamless demonstration, each screen can also be directly opened via URL query parameters:
 
@@ -61,7 +82,7 @@ For seamless demonstration, each screen can also be directly opened via URL quer
 
 ---
 
-## 4. Relational Database Summary (MySQL 8.0)
+## 5. Relational Database Summary (MySQL 8.0)
 
 - **Database Name:** `agrochat_db`
 - **Total Relational Tables:** 25 Tables
