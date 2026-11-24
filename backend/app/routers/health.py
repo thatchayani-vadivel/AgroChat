@@ -43,6 +43,11 @@ def read_root() -> RootResponse:
     summary="Health Check",
     description="Checks API availability and MySQL database connectivity.",
 )
+@router.get(
+    "/api/health",
+    response_model=HealthResponse,
+    include_in_schema=False,
+)
 def health_check() -> JSONResponse:
     """Verify API and database health."""
     settings = get_settings()
