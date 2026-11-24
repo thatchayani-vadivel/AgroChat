@@ -43,6 +43,14 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
     _farmerRepository =
         widget.farmerRepository ??
         FarmerRepository(token: _session.accessToken);
+    final tabParam = Uri.base.queryParameters['tab']?.toLowerCase();
+    if (tabParam == 'farms') {
+      _currentIndex = 1;
+    } else if (tabParam == 'crops') {
+      _currentIndex = 2;
+    } else if (tabParam == 'profile') {
+      _currentIndex = 3;
+    }
   }
 
   void _onSessionUpdated(AuthSession updatedSession) {

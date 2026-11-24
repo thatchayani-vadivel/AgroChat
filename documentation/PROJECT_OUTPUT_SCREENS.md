@@ -4,172 +4,86 @@ This document contains the visual output representations, architecture descripti
 
 ---
 
-## 1. System Modules Overview
+## 1. The Single Application URL
 
-AgroChat is built with a strictly **two-role** architecture:
+The single connected entry point for the entire application is:
 
-```
-                          ┌─────────────────────────────┐
-                          │    AgroChat Mobile / Web    │
-                          │    (Flutter 3.x Frontend)   │
-                          └──────────────┬──────────────┘
-                                         │
-                                         ▼
-                    ┌────────────────────────────────────────┐
-                    │       Role Selection & Login           │
-                    ├────────────────────┬───────────────────┤
-                    │   Farmer Portal    │   Officer Portal  │
-                    └─────────┬──────────┴─────────┬─────────┘
-                              │                    │
-              ┌───────────────┴──────┐      ┌──────┴────────────────┐
-              │ • Farm Management    │      │ • Request Review      │
-              │ • Crop Advisory      │      │ • Consultations       │
-              │ • Assistance Request │      │ • Issue Advisory      │
-              │ • Schemes/Subsidies  │      │ • Availability Status │
-              │ • Equipment Rental   │      │ • Farmer Notifications│
-              └───────────────┬──────┘      └──────┬────────────────┘
-                              │                    │
-                              ▼                    ▼
-                    ┌────────────────────────────────────────┐
-                    │      FastAPI REST API (Port 8000)      │
-                    │      JWT Authentication & PyMySQL      │
-                    └────────────────────┬───────────────────┘
-                                         │
-                                         ▼
-                    ┌────────────────────────────────────────┐
-                    │      MySQL 8.0 Database (25 Tables)    │
-                    │      `agrochat_db` on Port 3306        │
-                    └────────────────────────────────────────┘
-```
+👉 **http://127.0.0.1:3000**
+
+- When you open this link in any browser, the **Flutter Frontend** automatically communicates with the **FastAPI Backend (`http://127.0.0.1:8000`)** and the **MySQL 8.0 Database (`agrochat_db`)**.
+- No other ports or tools need to be opened by the user or evaluator.
+- Interactive API documentation is available at **http://127.0.0.1:8000/docs**.
 
 ---
 
-## 2. Main Output Screens & Image Assets
+## 2. Main Module Output Screenshots
 
-The following verified output screenshots are located in `documentation/screenshots/`:
+All high-resolution screenshot images are saved in `documentation/screenshots/`:
 
-| No. | Screen Name | File Path | Description |
-| :--- | :--- | :--- | :--- |
-| **01** | **Backend API Swagger Documentation** | `documentation/screenshots/01_swagger_api_documentation.png` | Complete interactive OpenAPI/Swagger specification testing UI at `http://127.0.0.1:8000/docs` with all endpoints categorized. |
-| **02** | **Role Selection & Authentication** | `documentation/screenshots/02_login_and_role_selection.png` | AgroChat unified login screen showing Farmer and Agricultural Officer tabs, prefilled credentials, and role selector. |
-| **03** | **System Health & Connectivity Verification** | `documentation/screenshots/01_system_health_verification.png` | Splash screen diagnostic check verifying FastAPI availability (`/health`) and MySQL database connectivity. |
-
----
-
-## 3. Detailed Module Functionality for Project Documentation
-
-### Module 1: Role-Based Authentication & Access Control
-- **Purpose:** Secure JWT-based entry point enforcing strict separation between **Farmer** and **Agricultural Officer** accounts.
-- **Key Features:**
-  - Role-specific login endpoints (`/api/auth/login/farmer`, `/api/auth/login/officer`).
-  - Passwords hashed using standard `bcrypt` algorithms.
-  - JWT tokens issued with 24-hour expiration (`expires_in: 86400`).
-  - Form validation with real-time error indicators.
-- **Demo Credentials:**
-  - **Farmer:** `farmer@agrochat.com` / `Farmer@123`
-  - **Agricultural Officer:** `officer@agrochat.com` / `Officer@123`
+| No. | Screen Name | File Path | Key Features Shown |
+| :---: | :--- | :--- | :--- |
+| **01** | **System Health & DB Verification** | `documentation/screenshots/01_system_health_verification.png` | Diagnostic startup verification showing `AgroChat API Connected`, `MySQL Status: connected`, and supported user roles. |
+| **02** | **Swagger REST API Documentation** | `documentation/screenshots/01_swagger_api_documentation.png` | Interactive OpenAPI / Swagger UI at `http://127.0.0.1:8000/docs` listing all 40+ endpoints. |
+| **03** | **Role Selection & Authentication** | `documentation/screenshots/02_login_and_role_selection.png` | Login screen with Farmer and Agricultural Officer tabs, prefilled demo credentials, and password masking. |
+| **04** | **Farmer Home Dashboard** | `documentation/screenshots/03_farmer_dashboard.png` | Personalized greetings ("Namaste, Ramesh Kisan"), farm metrics (4.5 Ac, 1 Crop), quick action shortcuts (Add Farm, Add Crop, Ask Officer, Govt Schemes, Shop & Machinery). |
+| **05** | **Farm Land Management** | `documentation/screenshots/04_farmer_farm_management.png` | Registered land parcel cards ("Green Acres Farm", Baramati, Pune, 4.5 Acres, Black Cotton soil, Drip irrigation, Owned), search filter, and "+ Add Farm" button. |
+| **06** | **Crop Lifecycle Tracking** | `documentation/screenshots/05_farmer_crop_management.png` | Active crops ("Wheat HD-2967"), season tags (Rabi, Kharif, Zaid), stage indicator ("Vegetative"), sowing & estimated harvest dates, and "+ Add Crop" button. |
+| **07** | **Farmer Profile & 11 Indic Languages** | `documentation/screenshots/06_farmer_profile_and_language.png` | Personal farmer profile, agricultural location details, and the 11 Indic language selector dropdown. |
+| **08** | **Officer Workstation Dashboard** | `documentation/screenshots/07_officer_dashboard.png` | Officer greetings ("Welcome, Officer Dr. Ananya Sharma!"), Senior Extension Officer designation, Consultation Availability toggle (ON), and pending review counters. |
+| **09** | **Farmer Requests Management Queue** | `documentation/screenshots/08_officer_requests_management.png` | Officer ticket review queue with search bar and status filters (`All`, `Open / Pending`, `My Assigned`, `Pending`, `Accepted`, `In Progress`, `Resolved`). |
+| **10** | **Officer In-App Notifications** | `documentation/screenshots/09_officer_notifications.png` | Real-time notifications center for newly assigned farmer queries and chat responses. |
+| **11** | **Officer Profile & Credentials** | `documentation/screenshots/10_officer_profile.png` | Professional qualifications (Ph.D., M.Sc. Agronomy), 10 years experience, Government department, Baramati jurisdiction, and consultation availability hours. |
 
 ---
 
-### Module 2: Farmer Advisory & Farm/Crop Management
-- **Purpose:** Enables registered farmers to record their land holdings, track crops across growth stages, and view personalized agricultural advisories.
-- **Key Features:**
-  - **Farm Registration:** Land area in acres, soil type (Alluvial, Black, Clay, Red), irrigation sources (Borewell, Canal, Drip).
-  - **Crop Lifecycle Tracking:** Sowing date, estimated harvest date, growth stage (Vegetative, Flowering, Ripening).
-  - **Indic Advisory:** Personalized advisory feeds rendered in English and 11 Indic languages (Hindi, Tamil, Telugu, Kannada, Marathi, Punjabi, Gujarati, Malayalam, Bengali, Odia, Assamese).
+## 3. Direct Navigation URLs for College Demo
+
+For seamless demonstration, each screen can also be directly opened via URL query parameters:
+
+| Target Page | Direct URL |
+| :--- | :--- |
+| **Farmer Dashboard** | `http://127.0.0.1:3000/?role=farmer` |
+| **Farm Management** | `http://127.0.0.1:3000/?role=farmer&tab=farms` |
+| **Crop Lifecycle** | `http://127.0.0.1:3000/?role=farmer&tab=crops` |
+| **Farmer Profile & Languages** | `http://127.0.0.1:3000/?role=farmer&tab=profile` |
+| **Officer Dashboard** | `http://127.0.0.1:3000/?role=officer` |
+| **Officer Requests Queue** | `http://127.0.0.1:3000/?role=officer&tab=requests` |
+| **Officer Notifications** | `http://127.0.0.1:3000/?role=officer&tab=notifications` |
+| **Officer Profile & Availability**| `http://127.0.0.1:3000/?role=officer&tab=profile` |
+| **FastAPI Swagger API Docs** | `http://127.0.0.1:8000/docs` |
 
 ---
 
-### Module 3: Farmer Assistance Request & Officer Consultations
-- **Purpose:** Direct digital communication channel between farmers facing pest/disease/crop issues and government agricultural officers.
-- **Key Features:**
-  - **Create Request:** Select farm and crop, describe issue, attach field photographs.
-  - **Urgency Levels:** Low, Medium, High, and Critical alerts.
-  - **Status Lifecycle:** `SUBMITTED` &rarr; `UNDER_REVIEW` &rarr; `ACCEPTED` / `REJECTED` &rarr; `RESOLVED`.
-  - **Consultation Thread:** Interactive chat messages between farmer and assigned officer with attachment uploads.
+## 4. Relational Database Summary (MySQL 8.0)
 
----
-
-### Module 4: Government Schemes & Subsidies Portal
-- **Purpose:** Digital repository of state and national welfare schemes for farmers.
-- **Key Features:**
-  - **Scheme Directory:** PM-KISAN, Pradhan Mantri Fasal Bima Yojana (PMFBY), Sub-Mission on Agricultural Mechanization (SMAM), Micro Irrigation schemes.
-  - **Eligibility Calculator:** Automated check against farmer's landholding size, crop type, and state.
-  - **Subsidy Enquiries:** Submission of subsidy requests with document verification tracking.
-
----
-
-### Module 5: Agricultural Equipment Rental & Services
-- **Purpose:** Transparent marketplace connecting farmers with nearby machinery providers.
-- **Key Features:**
-  - **Equipment Catalog:** Tractors, Combine Harvesters, Power Tillers, Drones, Laser Levelers.
-  - **Rental Booking:** Transparent daily and hourly rates with booking confirmation.
-  - **Cash on Delivery / UPI on Delivery:** Practical offline rural payment workflow.
-
----
-
-### Module 6: Agricultural Officer Dashboard & Queue Management
-- **Purpose:** Administrative workstation for agricultural extension officers.
-- **Key Features:**
-  - **Pending Requests Queue:** Real-time counter and filter for unassigned farmer queries.
-  - **Action Center:** Single-click request acceptance, rejection with reason, or status escalation.
-  - **Officer Availability Toggle:** Online/offline toggle for dynamic field assignment.
-
----
-
-### Module 7: Database Architecture (MySQL 8.0)
 - **Database Name:** `agrochat_db`
 - **Total Relational Tables:** 25 Tables
 - **Record Count Summary:**
 
-| Table Name | Record Count | Description |
-| :--- | :--- | :--- |
-| `users` | 57 records | Farmer & Agricultural Officer user accounts |
-| `farmer_profiles` | 6 records | Land size, experience, and profile attributes |
-| `officer_profiles` | 1 record | Government designation, department, specialization |
-| `farms` | 6 records | Geo-located agricultural land parcels |
-| `crops` | 6 records | Active crop cycles and stage monitoring |
-| `livestock` | 5 records | Farm animal registry |
-| `assistance_requests` | 5 records | Farmer support tickets with priority levels |
-| `consultations` | 5 records | Officer-farmer advisory consultation sessions |
-| `messages` | 5 records | Real-time chat dialogue messages |
-| `request_attachments`| 5 records | Photographic evidence of crop/pest issues |
-| `schemes` | 8 records | Government agricultural subsidies and schemes |
-| `subsidy_enquiries` | 5 records | Farmer applications for government aid |
-| `equipment_rentals` | 5 records | Farm machinery rental registry |
-| `rental_bookings` | 5 records | Bookings made by farmers for equipment |
-| `products` | 9 records | Seeds, fertilizers, tools catalog |
-| `product_categories`| 9 records | Hierarchical marketplace categories |
-| `orders` | 5 records | Farmer purchase orders |
-| `order_items` | 5 records | Order line items |
-| `shopping_carts` | 6 records | Active shopping carts per user |
-| `cart_items` | 1 record | Saved cart items |
-| `agricultural_services` | 5 records | Soil testing, drone spraying, vet visits |
-| `loan_enquiries` | 5 records | Agri-finance and Kisan Credit Card enquiries |
-| `notifications` | 15 records | In-app alerts for status updates and messages |
-| `loan_documents` | 0 records | Uploaded loan KYC files |
-| `subsidy_documents`| 0 records | Uploaded subsidy proof files |
-
----
-
-## 4. How to Capture Live High-Resolution Screenshots for Your Final Report
-
-Since the application is running live in your browser:
-
-1. **Farmer Screens:**
-   - In Chrome at `http://127.0.0.1:3000`, click **Sign In as Farmer** (credentials are prefilled).
-   - Press **Windows Key + Shift + S** (Windows Snipping Tool).
-   - Capture:
-     - **Farmer Home Dashboard**
-     - **Farm Management Tab** (click bottom bar icon 2)
-     - **Crop Management Tab** (click bottom bar icon 3)
-     - **Profile & Language Tab** (click bottom bar icon 4)
-2. **Officer Screens:**
-   - Click **Logout** in Farmer Profile.
-   - Select **Agricultural Officer** tab and click **Sign In as Agricultural Officer**.
-   - Capture:
-     - **Officer Dashboard**
-     - **Requests Review Queue** (click bottom bar icon 2)
-     - **Notifications Tab** (click bottom bar icon 3)
-3. **Save Screenshots:**
-   - Paste or save each screenshot into your documentation report under `Results and Output Screens`.
+| Table Name | Records | Description |
+| :--- | :---: | :--- |
+| `users` | 57 | Farmer & Agricultural Officer accounts |
+| `notifications` | 15 | System notifications & alerts |
+| `products` | 9 | Agricultural seeds, fertilizers, tools |
+| `product_categories` | 9 | Marketplace product categories |
+| `schemes` | 8 | Central and state welfare schemes |
+| `farms` | 6 | Registered farm land parcels |
+| `crops` | 6 | Active crop cycles and monitoring |
+| `farmer_profiles` | 6 | Detailed farmer profiles & land size |
+| `shopping_carts` | 6 | User shopping carts |
+| `assistance_requests`| 5 | Farmer support queries with priority |
+| `consultations` | 5 | Officer advisory consultation sessions |
+| `messages` | 5 | Real-time chat dialogue messages |
+| `request_attachments`| 5 | Photos of crop issues and pests |
+| `subsidy_enquiries` | 5 | Applications for government subsidies |
+| `equipment_rentals` | 5 | Available farm machinery registry |
+| `rental_bookings` | 5 | Equipment rental bookings by farmers |
+| `agricultural_services` | 5 | Soil testing, drone spraying services |
+| `loan_enquiries` | 5 | Agri-credit and KCC inquiries |
+| `orders` | 5 | Farmer marketplace orders |
+| `order_items` | 5 | Order items and quantities |
+| `livestock` | 5 | Farm livestock registry |
+| `officer_profiles` | 1 | Agricultural officer profile & credentials |
+| `cart_items` | 1 | Items in active shopping carts |
+| `loan_documents` | 0 | Loan KYC documents |
+| `subsidy_documents`| 0 | Subsidy proof attachments |

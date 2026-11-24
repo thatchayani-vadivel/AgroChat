@@ -43,6 +43,14 @@ class _OfficerHomeScreenState extends State<OfficerHomeScreen> {
     _officerRepository =
         widget.officerRepository ??
         OfficerRepository(token: _session.accessToken);
+    final tabParam = Uri.base.queryParameters['tab']?.toLowerCase();
+    if (tabParam == 'requests') {
+      _currentIndex = 1;
+    } else if (tabParam == 'notifications') {
+      _currentIndex = 2;
+    } else if (tabParam == 'profile') {
+      _currentIndex = 3;
+    }
   }
 
   void _onSessionUpdated(AuthSession updatedSession) {

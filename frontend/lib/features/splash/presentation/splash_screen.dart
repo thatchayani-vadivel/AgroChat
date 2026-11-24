@@ -91,6 +91,34 @@ class _SplashScreenState extends State<SplashScreen> {
         _statusDetail = 'API & MySQL database are online and ready.';
       });
 
+      // Quick demo role shortcut via URL query parameter: ?role=farmer or ?role=officer
+      final roleParam = Uri.base.queryParameters['role']?.toLowerCase();
+      if (roleParam == 'farmer') {
+        try {
+          final demoSession = await _authRepo.loginFarmer(
+            email: 'farmer@agrochat.com',
+            password: 'Farmer@123',
+          );
+          if (!mounted) return;
+          _routeToDestination(
+            FarmerHomeScreen(session: demoSession, authRepository: _authRepo),
+          );
+          return;
+        } catch (_) {}
+      } else if (roleParam == 'officer') {
+        try {
+          final demoSession = await _authRepo.loginOfficer(
+            email: 'officer@agrochat.com',
+            password: 'Officer@123',
+          );
+          if (!mounted) return;
+          _routeToDestination(
+            OfficerHomeScreen(session: demoSession, authRepository: _authRepo),
+          );
+          return;
+        } catch (_) {}
+      }
+
       // Check for an active persisted JWT session
       final session = await _authRepo.loadSession();
       if (session != null) {
