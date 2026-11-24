@@ -1,0 +1,2 @@
+"""AgroChat FastAPI backend package."""
+
