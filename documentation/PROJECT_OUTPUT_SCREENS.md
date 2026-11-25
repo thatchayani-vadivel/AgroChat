@@ -34,6 +34,7 @@ The following screenshots represent the native Android Mobile Emulator output re
 | **M10** | **Mobile Officer Requests Queue** | `documentation/emulator_screenshots/10_mobile_officer_requests.png` | Touch-friendly filter pills (`All`, `Open / Pending`, `My Assigned`, `Resolved`), query search bar, farmer inquiry cards with priority tags. |
 | **M11** | **Mobile Officer Notifications** | `documentation/emulator_screenshots/11_mobile_officer_notifications.png` | Mobile notifications center with unread message badges, farmer consultation assignment alerts, and timestamped updates. |
 | **M12** | **Mobile Officer Profile** | `documentation/emulator_screenshots/12_mobile_officer_profile.png` | Officer professional credentials, Ph.D./M.Sc. qualifications, government jurisdiction, contact info, and availability hours. |
+| **M13** | **Mobile Schemes & Subsidies** | `documentation/emulator_screenshots/13_mobile_schemes_and_subsidies.png` | Touch-optimized mobile schemes & subsidies portal with category filter chips (`ALL`, `SCHEME`, `SUBSIDY`, `LOAN`, `INSURANCE`), subsidy details, and officer enquiry tracking. |
 
 ---
 
@@ -57,6 +58,7 @@ All high-resolution desktop view screenshot images are saved in `documentation/s
 | **12** | **Farmer Requests Management Queue** | `documentation/screenshots/08_officer_requests_management.png` | Officer ticket review queue with search bar and status filters (`All`, `Open / Pending`, `My Assigned`, `Pending`, `Accepted`, `In Progress`, `Resolved`). |
 | **13** | **Officer In-App Notifications** | `documentation/screenshots/09_officer_notifications.png` | Real-time notifications center for newly assigned farmer queries and chat responses. |
 | **14** | **Officer Profile & Credentials** | `documentation/screenshots/10_officer_profile.png` | Professional qualifications (Ph.D., M.Sc. Agronomy), 10 years experience, Government department, Baramati jurisdiction, and consultation availability hours. |
+| **15** | **Government Schemes & Subsidies** | `documentation/screenshots/11_government_schemes_and_subsidies.png` | Central & State agricultural schemes (PM-KISAN, PM-KUSUM 60% solar pump subsidy, Soil Health Card, Micro Irrigation, KCC 7% loan, PMFBY crop insurance), category filter chips, search bar, and direct enquiry submission. |
 
 ---
 
@@ -74,6 +76,7 @@ For seamless demonstration, each screen can also be directly opened via URL quer
 | **Farm Management** | `http://127.0.0.1:3000/?role=farmer&tab=farms` |
 | **Crop Lifecycle** | `http://127.0.0.1:3000/?role=farmer&tab=crops` |
 | **Farmer Profile & Languages** | `http://127.0.0.1:3000/?role=farmer&tab=profile` |
+| **Government Schemes & Subsidies** | `http://127.0.0.1:3000/?role=farmer&tab=schemes` |
 | **Officer Dashboard** | `http://127.0.0.1:3000/?role=officer` |
 | **Officer Requests Queue** | `http://127.0.0.1:3000/?role=officer&tab=requests` |
 | **Officer Notifications** | `http://127.0.0.1:3000/?role=officer&tab=notifications` |

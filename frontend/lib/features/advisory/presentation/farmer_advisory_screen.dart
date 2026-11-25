@@ -46,7 +46,18 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    final tabParam = Uri.base.queryParameters['tab']?.toLowerCase();
+    int initialTab = 0;
+    if (tabParam == 'enquiries') {
+      initialTab = 1;
+    } else if (tabParam == 'centers' || tabParam == 'services') {
+      initialTab = 2;
+    }
+    _tabController = TabController(length: 3, vsync: this, initialIndex: initialTab);
+    final catParam = Uri.base.queryParameters['cat']?.toLowerCase();
+    if (catParam != null && _schemeCategories.contains(catParam)) {
+      _schemeCategoryFilter = catParam;
+    }
     _loadAllData();
   }
 
@@ -307,17 +318,25 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Government Schemes & Advisory'),
-        bottom: TabBar(
-          controller: _tabController,
-          labelColor: AppColors.surfaceWhite,
-          unselectedLabelColor: AppColors.surfaceWhite.withValues(alpha: 0.7),
-          indicatorColor: AppColors.softMint,
-          tabs: const [
-            Tab(text: 'Schemes & Loans'),
-            Tab(text: 'My Enquiries'),
-            Tab(text: 'Agri Centers'),
-          ],
+        title: const Text('Government Schemes & Subsidies'),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 820),
+              child: TabBar(
+                controller: _tabController,
+                labelColor: AppColors.surfaceWhite,
+                unselectedLabelColor: AppColors.surfaceWhite.withValues(alpha: 0.7),
+                indicatorColor: AppColors.softMint,
+                tabs: const [
+                  Tab(text: 'Schemes & Subsidies'),
+                  Tab(text: 'My Enquiries'),
+                  Tab(text: 'Agri Centers'),
+                ],
+              ),
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -337,13 +356,18 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
               actionLabel: 'Retry',
               onAction: _loadAllData,
             )
-          : TabBarView(
-              controller: _tabController,
-              children: [
-                _buildSchemesTab(),
-                _buildEnquiriesTab(),
-                _buildServicesTab(),
-              ],
+          : Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 820),
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _buildSchemesTab(),
+                    _buildEnquiriesTab(),
+                    _buildServicesTab(),
+                  ],
+                ),
+              ),
             ),
     );
   }

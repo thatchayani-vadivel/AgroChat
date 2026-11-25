@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:agrochat_app/core/theme/app_colors.dart';
+import 'package:agrochat_app/features/advisory/presentation/farmer_advisory_screen.dart';
+import 'package:agrochat_app/features/advisory/repositories/advisory_repository.dart';
 import 'package:agrochat_app/features/auth/models/auth_user.dart';
 import 'package:agrochat_app/features/auth/presentation/login_screen.dart';
 import 'package:agrochat_app/features/auth/repositories/auth_repository.dart';
@@ -50,6 +52,17 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
       _currentIndex = 2;
     } else if (tabParam == 'profile') {
       _currentIndex = 3;
+    } else if (tabParam == 'schemes' || tabParam == 'subsidies') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => FarmerAdvisoryScreen(
+              repository: AdvisoryRepository(token: _session.accessToken),
+            ),
+          ),
+        );
+      });
     }
   }
 

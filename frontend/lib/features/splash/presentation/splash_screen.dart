@@ -12,6 +12,8 @@ import 'package:agrochat_app/features/auth/models/auth_user.dart';
 import 'package:agrochat_app/features/auth/presentation/login_screen.dart';
 import 'package:agrochat_app/features/auth/presentation/register_screen.dart';
 import 'package:agrochat_app/features/auth/repositories/auth_repository.dart';
+import 'package:agrochat_app/features/advisory/presentation/farmer_advisory_screen.dart';
+import 'package:agrochat_app/features/advisory/repositories/advisory_repository.dart';
 import 'package:agrochat_app/features/farmer/presentation/farmer_home_screen.dart';
 import 'package:agrochat_app/features/officer/presentation/officer_home_screen.dart';
 import 'package:agrochat_app/shared/widgets/agro_logo.dart';
@@ -115,6 +117,21 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         );
         return;
+      }
+      if (pageParam == 'schemes' || pageParam == 'subsidies') {
+        try {
+          final demoSession = await _authRepo.loginFarmer(
+            email: 'farmer@agrochat.com',
+            password: 'Farmer@123',
+          );
+          if (!mounted) return;
+          _routeToDestination(
+            FarmerAdvisoryScreen(
+              repository: AdvisoryRepository(token: demoSession.accessToken),
+            ),
+          );
+          return;
+        } catch (_) {}
       }
 
       // Quick demo role shortcut via URL query parameter: ?role=farmer or ?role=officer
