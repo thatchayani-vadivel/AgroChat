@@ -425,6 +425,44 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
           ),
         ),
         const Divider(height: 1),
+        Container(
+          margin: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFFE8F5E9), Color(0xFFC8E6C9)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: AppColors.primaryGreen.withValues(alpha: 0.3)),
+          ),
+          child: const Row(
+            children: [
+              Icon(Icons.verified_user_rounded, color: AppColors.primaryGreenDark, size: 22),
+              SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '10 Active Central & State Agriculture Schemes (2026–27)',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.primaryGreenDark,
+                      ),
+                    ),
+                    Text(
+                      'Direct DBT Financial Assistance, Micro-Irrigation, Solar Pumps & KCC Loans',
+                      style: TextStyle(fontSize: 11, color: Color(0xFF2E7D32)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
         Expanded(
           child: _filteredSchemes.isEmpty
               ? const AgroEmptyState(
@@ -494,7 +532,15 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
                                     color: AppColors.textPrimary,
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 2),
+                                Text(
+                                  'Provider: ${scheme.provider}',
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
                                 Text(
                                   scheme.description,
                                   style: const TextStyle(
@@ -505,17 +551,43 @@ class _FarmerAdvisoryScreenState extends State<FarmerAdvisoryScreen>
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 const SizedBox(height: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF1F8E9),
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: const Color(0xFFC8E6C9)),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      const Icon(Icons.check_circle_rounded, color: AppColors.primaryGreen, size: 16),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: Text(
+                                          scheme.benefits,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColors.primaryGreenDark,
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        scheme.benefits,
+                                        'Eligibility: ${scheme.eligibility}',
                                         style: const TextStyle(
                                           fontSize: 11,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColors.primaryGreen,
+                                          color: AppColors.textSecondary,
                                         ),
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
