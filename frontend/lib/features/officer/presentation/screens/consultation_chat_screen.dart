@@ -151,11 +151,16 @@ class _ConsultationChatScreenState extends State<ConsultationChatScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(child: _buildChatBody()),
-          _buildMessageInput(),
-        ],
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 820),
+          child: Column(
+            children: [
+              Expanded(child: _buildChatBody()),
+              _buildMessageInput(),
+            ],
+          ),
+        ),
       ),
     );
   }

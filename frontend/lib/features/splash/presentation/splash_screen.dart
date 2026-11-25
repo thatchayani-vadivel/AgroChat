@@ -14,6 +14,10 @@ import 'package:agrochat_app/features/auth/presentation/register_screen.dart';
 import 'package:agrochat_app/features/auth/repositories/auth_repository.dart';
 import 'package:agrochat_app/features/advisory/presentation/farmer_advisory_screen.dart';
 import 'package:agrochat_app/features/advisory/repositories/advisory_repository.dart';
+import 'package:agrochat_app/features/marketplace/presentation/farmer_marketplace_screen.dart';
+import 'package:agrochat_app/features/marketplace/repositories/marketplace_repository.dart';
+import 'package:agrochat_app/features/officer/presentation/screens/consultation_chat_screen.dart';
+import 'package:agrochat_app/features/officer/repositories/officer_repository.dart';
 import 'package:agrochat_app/features/farmer/presentation/farmer_home_screen.dart';
 import 'package:agrochat_app/features/officer/presentation/officer_home_screen.dart';
 import 'package:agrochat_app/shared/widgets/agro_logo.dart';
@@ -118,7 +122,7 @@ class _SplashScreenState extends State<SplashScreen> {
         );
         return;
       }
-      if (pageParam == 'schemes' || pageParam == 'subsidies') {
+      if (pageParam == 'schemes' || pageParam == 'subsidies' || pageParam == 'loans' || pageParam == 'insurance') {
         try {
           final demoSession = await _authRepo.loginFarmer(
             email: 'farmer@agrochat.com',
@@ -128,6 +132,41 @@ class _SplashScreenState extends State<SplashScreen> {
           _routeToDestination(
             FarmerAdvisoryScreen(
               repository: AdvisoryRepository(token: demoSession.accessToken),
+            ),
+          );
+          return;
+        } catch (_) {}
+      }
+      if (pageParam == 'marketplace' || pageParam == 'shop') {
+        try {
+          final demoSession = await _authRepo.loginFarmer(
+            email: 'farmer@agrochat.com',
+            password: 'Farmer@123',
+          );
+          if (!mounted) return;
+          _routeToDestination(
+            FarmerMarketplaceScreen(
+              repository: MarketplaceRepository(token: demoSession.accessToken),
+            ),
+          );
+          return;
+        } catch (_) {}
+      }
+      if (pageParam == 'chat' || pageParam == 'consultation') {
+        try {
+          final demoSession = await _authRepo.loginFarmer(
+            email: 'farmer@agrochat.com',
+            password: 'Farmer@123',
+          );
+          if (!mounted) return;
+          _routeToDestination(
+            ConsultationChatScreen(
+              requestId: 9,
+              requestTitle: 'Wheat Leaves Ashwini Pest Consultation',
+              farmerName: 'Ramesh Kisan',
+              officerName: 'Dr. Ananya Sharma',
+              repository: OfficerRepository(token: demoSession.accessToken),
+              isFarmerViewer: true,
             ),
           );
           return;

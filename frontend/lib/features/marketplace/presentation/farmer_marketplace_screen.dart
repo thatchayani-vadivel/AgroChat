@@ -219,17 +219,25 @@ class _FarmerMarketplaceScreenState extends State<FarmerMarketplaceScreen>
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agri Marketplace & Rentals'),
-        bottom: TabBar(
-          controller: _tabController,
-          labelColor: AppColors.surfaceWhite,
-          unselectedLabelColor: AppColors.surfaceWhite.withValues(alpha: 0.7),
-          indicatorColor: AppColors.softMint,
-          tabs: [
-            const Tab(text: 'Agri Shop'),
-            const Tab(text: 'Machinery Rentals'),
-            Tab(text: 'Cart & Orders ($cartCount)'),
-          ],
+        title: const Text('Agricultural Marketplace'),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 820),
+              child: TabBar(
+                controller: _tabController,
+                labelColor: AppColors.surfaceWhite,
+                unselectedLabelColor: AppColors.surfaceWhite.withValues(alpha: 0.7),
+                indicatorColor: AppColors.softMint,
+                tabs: [
+                  const Tab(text: 'Agri Products'),
+                  const Tab(text: 'Machinery Rentals'),
+                  Tab(text: 'Cart & Orders ($cartCount)'),
+                ],
+              ),
+            ),
+          ),
         ),
         actions: [
           IconButton(
@@ -251,13 +259,18 @@ class _FarmerMarketplaceScreenState extends State<FarmerMarketplaceScreen>
               actionLabel: 'Retry',
               onAction: _loadAllData,
             )
-          : TabBarView(
-              controller: _tabController,
-              children: [
-                _buildShopTab(),
-                _buildRentalsTab(),
-                _buildCartAndOrdersTab(),
-              ],
+          : Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 820),
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _buildShopTab(),
+                    _buildRentalsTab(),
+                    _buildCartAndOrdersTab(),
+                  ],
+                ),
+              ),
             ),
     );
   }

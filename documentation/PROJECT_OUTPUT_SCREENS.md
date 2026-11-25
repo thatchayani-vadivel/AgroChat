@@ -35,6 +35,9 @@ The following screenshots represent the native Android Mobile Emulator output re
 | **M11** | **Mobile Officer Notifications** | `documentation/emulator_screenshots/11_mobile_officer_notifications.png` | Mobile notifications center with unread message badges, farmer consultation assignment alerts, and timestamped updates. |
 | **M12** | **Mobile Officer Profile** | `documentation/emulator_screenshots/12_mobile_officer_profile.png` | Officer professional credentials, Ph.D./M.Sc. qualifications, government jurisdiction, contact info, and availability hours. |
 | **M13** | **Mobile Schemes & Subsidies** | `documentation/emulator_screenshots/13_mobile_schemes_and_subsidies.png` | Touch-optimized mobile schemes & subsidies portal with category filter chips (`ALL`, `SCHEME`, `SUBSIDY`, `LOAN`, `INSURANCE`), subsidy details, and officer enquiry tracking. |
+| **M14** | **Mobile Farmer–Officer Chat** | `documentation/emulator_screenshots/14_mobile_farmer_officer_chat.png` | Direct consultation chat between Farmer Ramesh Kisan and Officer Dr. Ananya Sharma with timestamps, sent/received message bubbles, dosage instructions, and text input box. |
+| **M15** | **Mobile Loan & Insurance Info** | `documentation/emulator_screenshots/15_mobile_loan_and_insurance.png` | Mobile view of KCC crop loan (7% subvention), AIF term loans, PMFBY crop insurance, and Livestock insurance with eligibility criteria. |
+| **M16** | **Mobile Agricultural Marketplace** | `documentation/emulator_screenshots/16_mobile_agricultural_marketplace.png` | Mobile e-commerce catalog featuring certified seeds, fertilizers, neem biopesticides, tools, prices in INR, Add to Cart buttons, and rentals tab. |
 
 ---
 
@@ -59,6 +62,9 @@ All high-resolution desktop view screenshot images are saved in `documentation/s
 | **13** | **Officer In-App Notifications** | `documentation/screenshots/09_officer_notifications.png` | Real-time notifications center for newly assigned farmer queries and chat responses. |
 | **14** | **Officer Profile & Credentials** | `documentation/screenshots/10_officer_profile.png` | Professional qualifications (Ph.D., M.Sc. Agronomy), 10 years experience, Government department, Baramati jurisdiction, and consultation availability hours. |
 | **15** | **Government Schemes & Subsidies** | `documentation/screenshots/11_government_schemes_and_subsidies.png` | Central & State agricultural schemes (PM-KISAN, PM-KUSUM 60% solar pump subsidy, Soil Health Card, Micro Irrigation, KCC 7% loan, PMFBY crop insurance), category filter chips, search bar, and direct enquiry submission. |
+| **16** | **Farmer–Officer Chat Screen** | `documentation/screenshots/12_farmer_officer_chat_screen.png` | Real-time advisory conversation interface between Farmer Ramesh Kisan and Officer Dr. Ananya Sharma regarding pest control (Ashwini aphids/whiteflies), treatment prescriptions (Neem Baan 10,000 ppm, Imidacloprid), and chat message history. |
+| **17** | **Loan and Insurance Information** | `documentation/screenshots/13_loan_and_insurance_screen.png` | Agricultural financial advisory showing Kisan Credit Card (KCC 7% subvention), Agriculture Infrastructure Fund (AIF), PM Fasal Bima Yojana (PMFBY), and Livestock Insurance Scheme details. |
+| **18** | **Agricultural Marketplace Screen** | `documentation/screenshots/14_agricultural_marketplace_screen.png` | Agricultural product marketplace with certified seeds (Wheat HD-2967), IFFCO urea, DAP fertilizers, bio-pesticides, tools, prices, stock quantities, cart counters, and machinery rental portal. |
 
 ---
 
@@ -77,6 +83,9 @@ For seamless demonstration, each screen can also be directly opened via URL quer
 | **Crop Lifecycle** | `http://127.0.0.1:3000/?role=farmer&tab=crops` |
 | **Farmer Profile & Languages** | `http://127.0.0.1:3000/?role=farmer&tab=profile` |
 | **Government Schemes & Subsidies** | `http://127.0.0.1:3000/?role=farmer&tab=schemes` |
+| **Farmer–Officer Advisory Chat** | `http://127.0.0.1:3000/?role=farmer&tab=chat` |
+| **Loan & Insurance Information** | `http://127.0.0.1:3000/?role=farmer&tab=loans&cat=loan` |
+| **Agricultural Marketplace** | `http://127.0.0.1:3000/?role=farmer&tab=marketplace` |
 | **Officer Dashboard** | `http://127.0.0.1:3000/?role=officer` |
 | **Officer Requests Queue** | `http://127.0.0.1:3000/?role=officer&tab=requests` |
 | **Officer Notifications** | `http://127.0.0.1:3000/?role=officer&tab=notifications` |

@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:agrochat_app/core/theme/app_colors.dart';
 import 'package:agrochat_app/features/advisory/presentation/farmer_advisory_screen.dart';
 import 'package:agrochat_app/features/advisory/repositories/advisory_repository.dart';
+import 'package:agrochat_app/features/marketplace/presentation/farmer_marketplace_screen.dart';
+import 'package:agrochat_app/features/marketplace/repositories/marketplace_repository.dart';
+import 'package:agrochat_app/features/officer/presentation/screens/consultation_chat_screen.dart';
+import 'package:agrochat_app/features/officer/repositories/officer_repository.dart';
 import 'package:agrochat_app/features/auth/models/auth_user.dart';
 import 'package:agrochat_app/features/auth/presentation/login_screen.dart';
 import 'package:agrochat_app/features/auth/repositories/auth_repository.dart';
@@ -52,13 +56,40 @@ class _FarmerHomeScreenState extends State<FarmerHomeScreen> {
       _currentIndex = 2;
     } else if (tabParam == 'profile') {
       _currentIndex = 3;
-    } else if (tabParam == 'schemes' || tabParam == 'subsidies') {
+    } else if (tabParam == 'schemes' || tabParam == 'subsidies' || tabParam == 'loans' || tabParam == 'insurance') {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (!mounted) return;
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (_) => FarmerAdvisoryScreen(
               repository: AdvisoryRepository(token: _session.accessToken),
+            ),
+          ),
+        );
+      });
+    } else if (tabParam == 'marketplace' || tabParam == 'shop') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => FarmerMarketplaceScreen(
+              repository: MarketplaceRepository(token: _session.accessToken),
+            ),
+          ),
+        );
+      });
+    } else if (tabParam == 'chat' || tabParam == 'consultation') {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => ConsultationChatScreen(
+              requestId: 9,
+              requestTitle: 'Wheat Leaves Ashwini Pest Consultation',
+              farmerName: 'Ramesh Kisan',
+              officerName: 'Dr. Ananya Sharma',
+              repository: OfficerRepository(token: _session.accessToken),
+              isFarmerViewer: true,
             ),
           ),
         );
